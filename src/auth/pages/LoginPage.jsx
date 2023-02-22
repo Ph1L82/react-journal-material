@@ -5,7 +5,7 @@ import { Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
-import { checkingAuthentication, startGoogleSignIn } from '../../store/auth';
+import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth';
 
 
 export const LoginPage = () => {
@@ -14,21 +14,20 @@ export const LoginPage = () => {
 
   const dispatch = useDispatch();
   const { email, password, onInputChange } = useForm({
-    email: 'your@email.com',
-    password: '123456'
+    email: '',
+    password: ''
   })
 
   const isAuthenticating = useMemo(() => status === 'checking', [status])
 
   const onSubmit = (event) => {
     event.preventDefault()
-    dispatch(checkingAuthentication({ email, password }))
-    console.log({ email, password });
+    dispatch(startLoginWithEmailPassword({ email, password }))
+
   }
 
   const onGoogleSignIn = () => {
     dispatch(startGoogleSignIn())
-    console.log('onGoogleSignIn');
   }
 
 
