@@ -10,8 +10,10 @@ const formData = {
   displayName: 'Eduardo'
 }
 
+const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+
 const formValidations = {
-  email: [(value) => value.includes('@'), 'El correo debe contener @'],
+  email: [(value) => emailRegex.test(value), 'El correo debe ser válido'],
   password: [(value) => value.length >= 6, 'El password debe contener más de 6 caracteres'],
   displayName: [(value) => value.length >= 1, 'El nombre es obligatorio'],
 }
