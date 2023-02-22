@@ -5,9 +5,9 @@ import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
 
 const formData = {
-  email: 'erodriguez@philipsoft.cl',
-  password: '123456',
-  displayName: 'Eduardo'
+  email: '',
+  password: '',
+  displayName: ''
 }
 
 const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
