@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
-import { Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { Alert, Button, Grid, Link, TextField, Typography } from '@mui/material';
 import { Google } from '@mui/icons-material';
 import { AuthLayout } from '../layout/AuthLayout';
 import { useForm } from '../../hooks';
@@ -10,7 +10,7 @@ import { startGoogleSignIn, startLoginWithEmailPassword } from '../../store/auth
 
 export const LoginPage = () => {
 
-  const { status } = useSelector(state => state.auth);
+  const { status, errorMessage } = useSelector(state => state.auth);
 
   const dispatch = useDispatch();
   const { email, password, onInputChange } = useForm({
@@ -59,6 +59,10 @@ export const LoginPage = () => {
             />
           </Grid>
 
+          <Grid item xs={12} display={!!errorMessage ? '' : 'none'} sx={{ mt: 2 }}>
+            <Alert severity='error'>{errorMessage}</Alert>
+          </Grid>
+
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
             <Grid item xs={12} sm={6}>
               <Button
@@ -69,6 +73,7 @@ export const LoginPage = () => {
                 Login
               </Button>
             </Grid>
+
             <Grid item xs={12} sm={6}>
               <Button
                 variant='contained'
